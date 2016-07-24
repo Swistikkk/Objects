@@ -1,22 +1,27 @@
 function slice(array) {
   let newArray = [];
 
-  for(let i = 0; i < array.length; i++) {
-    if(arguments[1] != undefined || arguments[1] == 0) {
+  if(arguments[1] != undefined) {
 
-      if(arguments[2] != undefined && arguments[2] < array.length) {
-
-        if(arguments[1] <= i && arguments[2] > i ) {
-          newArray[newArray.length] = array[i];
-        }
-
-      } else {
-
-        if(arguments[1] <= i) {
-          newArray[newArray.length] = array[i];
-        }
+    if(arguments[1] < 0) {
+      for(let i = array.length + arguments[1]; i < array.length; i++) {
+        newArray[newArray.length] = array[i];
       }
+    } else if(arguments[1] >= 0 && arguments[2] > 0) {
+        for(let i = arguments[1]; i < arguments[2]; i++) {
+          newArray[newArray.length] = array[i];
+        }
+    } else if(arguments[1] >= 0 && arguments[2] < 0) {
+      // не знаю, как работает отрицательный arguments[2]
+    } else if(arguments[1] >= 0) {
+      for(let i = arguments[1]; i < array.length; i++) {
+        newArray[newArray.length] = array[i];
+      }
+    }
 
+  } else {
+    for(let i = 0; i < array.length; i++) {
+      newArray[newArray.length] = array[i];
     }
   }
 
